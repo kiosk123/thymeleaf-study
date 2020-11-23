@@ -4,8 +4,12 @@ import java.math.BigDecimal;
 
 import javax.jdo.annotations.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -26,9 +30,19 @@ public class OrderLine {
     
     @Setter
     private BigDecimal purchasePrice;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_ID")
+    private Product product;
 
-    public OrderLine(Integer amount, BigDecimal purchasePrice) {
+    public OrderLine(Integer amount, BigDecimal purchasePrice, Order order, Product product) {
         this.amount = amount;
         this.purchasePrice = purchasePrice;
+        this.order = order;
+        this.product = product;
     }
 }

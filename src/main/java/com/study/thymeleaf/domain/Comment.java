@@ -1,13 +1,13 @@
 package com.study.thymeleaf.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.jdo.annotations.Column;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.study.thymeleaf.domain.base.BaseTimeEntity;
@@ -23,16 +23,21 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @RequiredArgsConstructor
-public class Customer extends BaseTimeEntity {
+public class Comment  extends BaseTimeEntity {
     
     @Id @GeneratedValue
-    @Column(name = "CUSTOMER_ID")
+    @Column(name = "COMMENT_ID")
     private Long id;
     
-    @Setter 
+    @Lob
     @NonNull
-    private String name;
+    @Setter
+    private String text;
     
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Order> orders = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_ID")
+    @NonNull
+    @Setter
+    private Product product;
+    
 }
