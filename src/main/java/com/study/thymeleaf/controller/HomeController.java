@@ -1,6 +1,8 @@
 package com.study.thymeleaf.controller;
 
 
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ public class HomeController {
     public String index(HttpSession session, Model model) {
         session.setAttribute("user", new UserDTO("unknown"));
         model.addAttribute("welcome", "welcome my page!");
+        model.addAttribute("today", LocalDateTime.now());
         return "index";
     }
 }

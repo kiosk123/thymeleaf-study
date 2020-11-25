@@ -17,6 +17,12 @@
 	
 	<p th:text="${session.user.userName} + ' in http session'">세션에 있는 데이터 처리</p>
 	
-	<p th:utext="#{welcome.user(${session.user.userName})}">파라미터가 있는 메시지 처리</p>
+	<p th:text="#{welcome.user(${session.user.userName})}">파라미터가 있는 메시지 처리</p>
+	
+	<p th:text="#{multi.param('hello', 'world')}">멀티 파라미터 테스트</p>
+	
+	<p th:text="${#temporals.format(today,'dd MMMM yyyy')}">날짜 포매팅</p>
+	
+
 </body>
 </html>
