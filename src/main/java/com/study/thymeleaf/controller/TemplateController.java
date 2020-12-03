@@ -10,4 +10,9 @@ public class TemplateController {
     String template() {
         return "fragments/concat";
     }
+    
+    @GetMapping("/layoutHello")
+    String layoutHello() {
+        return "layout/hello";
+    }
 }
