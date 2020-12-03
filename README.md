@@ -8,3 +8,6 @@
 
 ## 주요 설정
 * 다국어 설정
+
+## HTML5 BolierPlate
+* [링크](https://html5boilerplate.com)
