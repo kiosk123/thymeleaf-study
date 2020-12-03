@@ -28,9 +28,25 @@ console.log(hello);
 	
 	<p th:text="#{multi.param('hello', 'world')}">멀티 파라미터 테스트</p>
 	
-	<p th:text="${#temporals.format(today,'dd MMMM yyyy')}">날짜 포매팅</p>
+	<p th:text="${#temporals.format(today,'dd MMMM yyyy')}">java.time.LocalDateTime 날짜 포매팅</p>
 	
-
+	<p th:text="${#dates.format(date, 'yyyy-mm-dd')}">java.util.Date 포매팅</p>
+	
+	<div th:with="curTime=${#dates.createToday()}">
+		<p>현재 시간 : [[${curTime}]]</p>
+	</div>
+	
+	<p th:text="${#numbers.formatInteger(number,3,'COMMA')}">숫자에 3자리 단위로 COMMA 입력</p>
+	<div th:with="priceValue=99.82738">
+		<p th:text="${#numbers.formatInteger(priceValue,3,'COMMA')}">소수를 정수로 표현</p>
+		<p th:text="${#numbers.formatDecimal(priceValue,5,10,'POINT')}">소수 표현</p>
+	</div>
+	
+	
+	<p th:with="target='u0001'" th:text="${var == target}? #{true} : #{false}">조건식 사용</p>
+	<p th:text="${list.size()}">리스트 사이즈1</p>
+	<p th:text="${#lists.size(list)}">리스트 사이즈2</p>
+	
 	<table border="1">
 		<tr>
 			<td>INDEX</td>
@@ -94,9 +110,5 @@ console.log(hello);
 			<td th:text="${member.userName}">유저이름</td>
 		</tr>
 	</table>
-	
-	<p th:with="target='u0001'" th:text="${var == target}? #{true} : #{false}">조건식 사용</p>
-	<p th:text="${list.size()}">리스트 사이즈1</p>
-	<p th:text="${#lists.size(list)}">리스트 사이즈2</p>
 </body>
 </html>

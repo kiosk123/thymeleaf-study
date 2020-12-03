@@ -3,6 +3,7 @@ package com.study.thymeleaf.controller;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -21,6 +22,7 @@ public class HomeController {
         session.setAttribute("user", new UserDTO("unknown"));
         model.addAttribute("welcome", "welcome my page!");
         model.addAttribute("today", LocalDateTime.now());
+        model.addAttribute("date", new Date());
         
         List<UserDTO> list = new ArrayList<>();
         IntStream.range(0, 10).forEach(n -> {
@@ -29,6 +31,7 @@ public class HomeController {
         });
         model.addAttribute("list", list);
         model.addAttribute("var", "u0001");
+        model.addAttribute("number", 123456789);
         return "index";
     }
 }
