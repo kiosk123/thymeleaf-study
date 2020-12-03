@@ -28,6 +28,7 @@ public class HomeController {
             list.add(dto);
         });
         model.addAttribute("list", list);
+        model.addAttribute("var", "u0001");
         return "index";
     }
 }

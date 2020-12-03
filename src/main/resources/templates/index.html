@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- 자바스크립트에서 타임리프 요청값 참조 -->
+<script th:inline="javascript">
+var hello = /*[[${welcome}]]*/"";
+console.log(hello);
+</script>
+
 <link th:rel="@{/css/gtvg.css}">
 <title>Welcome Home</title>
 </head>
@@ -39,6 +46,57 @@
 			<td th:text="${member.userName}">유저이름</td>
 		</tr>
 	</table>
-
+	
+	
+	<p th:with="target='u0001'" th:text="${var == target} ? 'SECRET' : ${var}">지역변수 선언 및 활용</p>
+	
+	
+		
+	<table border="1">
+		<caption>if unless를 통한 if else 처리</caption>
+		<tr>
+			<td>INDEX</td>
+			<td>SIZE</td>
+			<td>ODD/EVEN</td>
+			<td>USERNAME</td>
+		</tr>
+		
+		<tr th:each="member, iterState : ${list}">
+			<td>
+				<!-- if unless는 조건 값을 동등하게 줘야한다 그래야 작동됨 -->
+				<a th:if="${iterState.index eq 0}" href="#">MODIFY</a>
+				<a th:unless="${iterState.index eq 0}" href="#" >VIEW</a>
+			</td>
+			<td th:text="${iterState.size}">리스트 전체 사이즈</td>
+			<td th:text="${iterState.odd + ' ' + iterState.even}">현재 출력데이터가 홀수 번째인지 짝수번째 인지 여부</td>
+			<td th:text="${member.userName}">유저이름</td>
+		</tr>
+	</table>
+	
+	
+	<table border="1">
+		<caption>switch case 문 처리</caption>
+		<tr>
+			<td>INDEX</td>
+			<td>SIZE</td>
+			<td>ODD/EVEN</td>
+			<td>USERNAME</td>
+		</tr>
+		
+		<tr th:each="member, iterState : ${list}">
+			<td th:switch="${iterState.index}">
+				<a th:case="0" href="#">ADMIN</a>
+				<a th:case="1" href="#">MANAGER</a>
+				<a th:case="*" href="#">GUEST</a> <!-- * 디폴트 -->
+			</td>
+			<td th:text="${iterState.size}">리스트 전체 사이즈</td>
+			<td th:text="${iterState.odd + ' ' + iterState.even}">현재 출력데이터가 홀수 번째인지 짝수번째 인지 여부</td>
+			<td th:text="${member.userName}">유저이름</td>
+		</tr>
+	</table>
+	
+	<p th:with="target='u0001'" th:text="${var == target}? #{true} : #{false}">조건식 사용</p>
+	<p th:text="${list.size()}">리스트 사이즈1</p>
+	<p th:text="${#lists.size(list)}">리스트 사이즈2</p>
 </body>
 </html>
