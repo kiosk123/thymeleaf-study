@@ -24,5 +24,21 @@
 	<p th:text="${#temporals.format(today,'dd MMMM yyyy')}">날짜 포매팅</p>
 	
 
+	<table border="1">
+		<tr>
+			<td>INDEX</td>
+			<td>SIZE</td>
+			<td>ODD/EVEN</td>
+			<td>USERNAME</td>
+		</tr>
+		
+		<tr th:each="member, iterState : ${list}">
+			<td th:text="${iterState.index}">리스트 현재 인덱스</td>
+			<td th:text="${iterState.size}">리스트 전체 사이즈</td>
+			<td th:text="${iterState.odd + ' ' + ${iterState.even}">현재 출력데이터가 홀수 번째인지 짝수번째 인지 여부</td>
+			<td th:text="${member.userName}">유저이름</td>
+		</tr>
+	</table>
+
 </body>
 </html>
