@@ -9,5 +9,8 @@
 ## 주요 설정
 * 다국어 설정
 
+## 타임리프 레이아웃 재사용 라이브러리
+* [링크](https://ultraq.github.io/thymeleaf-layout-dialect/)
+
 ## HTML5 BolierPlate
 * [링크](https://html5boilerplate.com)
